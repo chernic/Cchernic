@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+
+
+<div id="content">
+    <ul class="timeline">
+        {% for post in paginator.posts %}
+        <li>
+            <div class="meta">
+                <time datetime="{{ post.date | date: '%Y-%m-%d' }}">
+                    {{ post.date | date: "%Y-%m-%d" }}
+                </time>
+                <address>{% for cat in post.categories %}{{ cat }}{% endfor %}</address>
+            </div>
+            <div class="device desktop"></div>
+            <div class="mrright">
+                <article>
+                    <cite><span class="hide">与你相距 <span class="geolocation" data-lat="{{post.lat}}" data-lng="{{post.lng}}">??</span>. </span>{{ post.address }}</cite>
+                    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                    <section>
+                        <img src="{{site.map_provider}}{{post.lng}},{{post.lat}}&markers={{post.lng}},{{post.lat}}">
+                        {{ post.content | strip_html | truncate: site.truncate }}
+                    </section>
+                    <section class="meta">
+                        {% if post.categories.size != 0 %}  城市:  {% for cat in post.categories %}<a href="/cities/#{{ cat }}" title="{{ cat }}">{{ cat }}</a>&nbsp;  {% endfor %} {% endif %}{% if post.tags.size != 0 %},  标签:  {% for tag in post.tags %}  <a href="/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>&nbsp;  {% endfor %} {% endif %}
+
+                    </section>
+                </article>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="navigation" data-index="2" data-total="{{paginator.total_pages}}">
+        <noscript>
+            {% if paginator.page == 1 %}<span class="current-page">1</span>{% else %}<a href="{{ site.url }}/">1</a>{% endif %}
+            {% for count in (2..paginator.total_pages) %}{% if count == paginator.page %}<span class="current-page">{{count}}</span>{% else %}<a href="{{ site.url }}/page/{{count}}/">{{count}}</a>{% endif %}{% endfor %}
+        </noscript>
+        <div class="hide">
+            {% if paginator.page == 1 %}<span class="current-page">1</span>{% else %}<a href="{{ site.url }}/">1</a>{% endif %}
+            {% for count in (2..paginator.total_pages) %}{% if count == paginator.page %}<span class="current-page">{{count}}</span>{% else %}<a href="{{ site.url }}/page/{{count}}/">{{count}}</a>{% endif %}{% endfor %}
+        </div>
+    </div>
+</div>
+<aside id="sidebar">
+    <div class="widget hide-for-small">
+        <h3>二维码 / QR Code</h3>
+        <div class="qrcode center">
+            <p><img class="radius" src="/static/qr.png" alt="qr code"></p>
+            <p>支持手机访问. Mobile Valid</p>
+        </div>
+    </div>
+    <div class="widget">
+        <h3>城市足迹 / Cities</h3>
+        <div class="tags">
+            <ul>
+                {% assign categories_list = site.categories %}
+                {% include function/category_list %}
+            </ul>
+        </div>
+    </div>
+    <div class="widget">
+        <h3>标签 / Tags</h3>
+        <div class="tags">
+            {% assign tags_list = site.tags %}
+            {% include function/tag_list %}
+        </div>
+    </div>
+</aside>
+

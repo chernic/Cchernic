@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+
+<div id="content">
+    <ul class="timeline">
+        <li class="post">
+            <div class="meta">
+                <time datetime="{{ page.date | date: '%Y-%m-%d' }}">
+                    {{ page.date | date: "%Y-%m-%d" }}
+                </time>
+                <address>{% for cat in page.categories %}{{ cat }}{% endfor %}</address>
+            </div>
+            <div class="device desktop"></div>
+            <div class="mrright">
+                <article>
+                    <cite><span class="hide">与你相距 <span class="geolocation" data-lat="{{page.lat}}" data-lng="{{page.lng}}">??</span>. </span>{{ page.address }}</cite>
+                    <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+                    <section>
+                        <img src="{{site.map_provider}}{{page.lng}},{{page.lat}}&markers={{page.lng}},{{page.lat}}">
+                        {{ content }}
+                    </section>
+
+                </article>
+            </div>
+        </li>
+    </ul>
+</div>
+<aside id="sidebar">
+    <div class="widget hide-for-small">
+        <h3>二维码 / QR Code</h3>
+        <div class="qrcode center">
+            <p><img class="radius" src="/static/qr.png" alt="qr code"></p>
+            <p>支持手机访问. Mobile Valid</p>
+        </div>
+    </div>
+    <div class="widget">
+        <h3>城市足迹 / Cities</h3>
+        <div class="tags">
+            <ul>
+                {% assign categories_list = site.categories %}
+                {% include function/category_list %}
+            </ul>
+        </div>
+    </div>
+    <div class="widget">
+        <h3>标签 / Tags</h3>
+        <div class="tags">
+            {% assign tags_list = site.tags %}
+            {% include function/tag_list %}
+        </div>
+    </div>
+</aside>

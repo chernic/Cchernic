@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>{{ page.title }}{% if page.title %} - {% endif %}{{ site.title }}</title>
+    <meta name="author" content="{{site.author}}">
+    <meta name="description" content="{{site.description}}">
+    <meta name="keywords" content="{% if page.categories.size != 0 %}{% for cat in page.categories %}{{ cat }},{% endfor %}{% endif %}{% if page.tags.size != 0 %}{% for tag in page.tags %}{{ tag }},{% endfor %}{% endif %}{{site.keywords}}">
+
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" href="http://willin.wang/favicon.ico">
+    <link rel="apple-touch-icon" href="http://willin.wang/touch-icon-iphone-precomposed.png">
+    <link rel="apple-touch-icon" sizes="76x76"   href="http://willin.wang/touch-icon-ipad-precomposed.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="http://willin.wang/touch-icon-iphone-retina-precomposed.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="http://willin.wang/touch-icon-ipad-retina-precomposed.png">
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var _speedMark = new Date(),base_url="{{ site.url }}/",site_title = "{{ site.title }}",duoshuoQuery = {short_name:"{{ site.duoshuo }}"};
+        window.jQuery || document.write(unescape('%3Cscript src="http://code.jquery.com/jquery-1.11.1.min.js"%3E%3C/script%3E'))
+    </script>
+    <script type="application/x-javascript" src="/static/default.js"></script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=35280207" charset="UTF-8"></script>
+
+</head>
+<body>
+<a href="http://github.com/willin"><img id="forkme" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+<div class="wrapper">
+    <header>
+        <h2>{{site.description}}</h2>
+        <h1><a href="/">{{ site.title }}</a></h1>
+        <h2 class="bottom">
+            <span class="hide">与你相距 <span class="geolocation" data-lat="{{site.last_lat}}" data-lng="{{site.last_lng}}">??</span>. </span>
+            不管还要多久，最后我会在你身边。
+        </h2>
+    </header>
+    <main id="main">
+        {{content}}
+    </main>
+    <footer id="footer">
+        <p><a href="{{site.url}}">Willin Now</a> &copy; {% assign first_post = site.posts | last %}{{ first_post.date | date: "%Y" }} - {{ site.time | date: "%Y" }} All Rights Reserved. Theme by <a href="http://willin.wang">Willin Wang</a>. Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>.</p>
+        <p><small>Licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/" title="Creative Commons 署名-非商业性使用 4.0" rel="license">CC BY-NC 4.0</a></small></p>
+    </footer>
+    <div class="hide">
+        <img src="/static/bg.jpg" id="bgb">
+    </div>
+</div><!--End Wrapper-->
+<canvas id="canvas"></canvas>
+<div id="loading"></div>
+</body>
+</html>

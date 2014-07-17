@@ -1,0 +1,20 @@
+---
+layout: page
+title: 标签 / Tags
+group: navigation
+permalink: /tags/
+---
+
+<ul class="tag-box inline">
+    {% assign tags_list = site.tags %}
+    {% include function/tag_list %}
+</ul>
+<div class="clear"></div>
+
+{% for tag in site.tags %}
+<h2 id="{{ tag[0] }}">{{ tag[0] }}<span class="count">{{ tag[1].size }}</span></h2>
+<ul class="decimal">
+    {% assign pages_list = tag[1] %}
+    {% include function/page_list %}
+</ul>
+{% endfor %}

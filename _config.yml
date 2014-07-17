@@ -1,0 +1,26 @@
+# Site settings
+title: "Willog"
+description: "你的过去，我来不及参与；你的未来，我不会缺席。"
+keywords: "Willin,Willin Wang,王之琳,长岛冰泪"
+author: "Willin Wang"
+baseurl: ""
+url: "http://now.willin.wang"
+exclude: [README.md, Rakefile, node_modules, Procfile]
+
+duoshuo: willog
+qq: 2539929
+email: willin@willin.org
+
+# Map settings
+map_provider: http://api.map.baidu.com/staticimage?width=600&height=300&zoom=13&center=
+last_lat: 31.973991
+last_lng: 118.787754
+
+# Build settings
+truncate: 300
+paginate: 5
+permalink: /:title/
+paginate_path: "/page/:num/"
+markdown: kramdown
+future: true
+highlighter: true
